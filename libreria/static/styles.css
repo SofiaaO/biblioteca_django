@@ -1,0 +1,41 @@
+.card {
+    position: relative;
+    transition: transform 0.3s ease; 
+}
+
+.card:hover {
+    transform: scale(1.05); 
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    inset: 0; /* Ocupa todo el espacio del card */
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 0; /* Detrás del texto */
+}
+
+.card h3 {
+    z-index: 10; /* Asegura que el texto esté encima de la imagen */
+    transition: color 0.3s ease;
+}
+
+.card:hover h3 {
+    color: rgb(253, 229, 209);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.card.libros::after {
+    background-image: url('/static/images/libros.jpg'); 
+}
+
+.card.autores::after {
+    background-image: url('/static/images/autores.jpg'); 
+}
+
+.card:hover::after {
+    opacity: 50;
+}

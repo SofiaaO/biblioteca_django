@@ -1,0 +1,40 @@
+{% extends "base.html"%}
+{% block content %}
+<h2 class="text-4xl font-bold text-center text-gray-800 mb-15">CREAR NUEVO LIBRO</h2>
+<div class="w-[70%] mx-auto m-10 bg-orange-50 shadow-lg rounded-lg">
+    <form method="post" class="w-[65%] items-center justify-center mx-auto">
+        {% csrf_token %}
+        <div class="m-4">
+            <label for="id_titulo" class="m-1 block text-sm font-bold text-gray-700">Titulo</label>
+            <input type="text" id="id_titulo" name="titulo" placeholder="  Ingrese el titulo del libro" class="m-1 p-1 block w-full bg-orange-200 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm placeholder-gray-500">
+        </div>
+        <div class="m-4">
+            <label for="id_autor" class="m-1 block text-sm font-bold text-gray-700">Autor</label>
+            <select id="id_autor" name="autor" class="m-1 p-1 block w-full bg-orange-200 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm placeholder-gray-500">
+                <option value="" disabled selected>Seleccione un autor</option>
+                {% for autor in autores %}
+                    <option value="{{ autor.id }}">{{ autor.nombre }}</option>
+                {% empty %}
+                    <option value="" disabled>No hay autores disponibles</option>
+                {% endfor %}
+            </select>
+        </div>         
+        <div class="m-4">
+            <label for="id_genero" class="m-1 block text-sm font-bold text-gray-700">Género</label>
+            <input type="text" id="id_genero" name="Genero" placeholder="  Ingrese el género del libro" class="m-1 p-1 block w-full bg-orange-200  rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm placeholder-gray-500">
+        </div>
+        <div class="m-4">
+            <label for="id_sinopsis" class="m-1 block text-sm font-bold text-gray-700">Sinopsis</label>
+            <textarea id="id_sinopsis" name="Sinopsis" rows="4" cols="50" class="m-1 p-1 block w-full bg-orange-200 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm placeholder-gray-500"></textarea>
+        </div>
+        <div class="m-4">
+            <label for="id_fecha_pu" class="m-1 block text-sm font-bold text-gray-700">Fecha de Publicación</label>
+            <input type="date" id="id_fecha_pu" name="Fecha" placeholder=" Ingrese la fecha de publicacion del libro" class="m-1 p-1 block w-full bg-orange-200 text-gray-500 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+        </div>
+    </form>
+</div>
+<div class="flex justify-center items-center m-10 mt-2 gap-20">
+    <a href="{% url 'lista_libros' %}" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Regresar</a>
+    <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md">Crear Libro</button>
+</div>
+{% endblock %}

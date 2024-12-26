@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-4xl font-bold text-center text-gray-800 mb-15">LISTA DE LIBROS</h2>
+<div class="w-[90%] mx-auto m-10 bg-orange-100 shadow-lg rounded-lg">
+    <div class="overflow-x-auto">  <!-- Contenedor para habilitar el scroll horizontal -->
+        <table class="min-w-full table-auto border-collapse border border-gray-300 text-sm text-gray-700 mt-4 shadow-lg rounded-lg">
+            <thead>
+                <tr class="bg-gray-400 text-white">
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">ID</th>
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">Titulo</th>
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">Autor</th>
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">Género</th>
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">Sinopsis</th>
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">Fecha de Publicación</th>
+                    <th class="border border-gray-300 py-2 px-4 text-center font-semibold">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for libro in libros %}
+                    <tr class="hover:bg-gray-100">
+                        <td class="border border-gray-300 py-2 px-4 text-center">{{ libro.id }}</td>
+                        <td class="border border-gray-300 py-2 px-4 text-center">{{ libro.titulo }}</td>
+                        <td class="border border-gray-300 py-2 px-4 text-center">{{ libro.autor }}</td>
+                        <td class="border border-gray-300 py-2 px-4 text-center">{{ libro.genero }}</td>
+                        <td class="border border-gray-300 py-2 px-4 text-center">{{ libro.sinopsis }}</td>
+                        <td class="border border-gray-300 py-2 px-4 text-center">{{ libro.fecha_pu }}</td>
+                        <td class="border border-gray-300 py-2 px-4 text-center">
+                            <div class="flex justify-center space-x-2">
+                                <a href="{% url 'modificar_libros' libro.id %}" class="bg-orange-400 hover:bg-orange-600 text-white py-1 px-4 rounded-md">Modificar</a>
+                                <span>|</span>
+                                <a href="{% url 'eliminar_libros' libro.id %}" class="bg-orange-700 hover:bg-orange-900 text-white py-1 px-4 rounded-md">Eliminar</a>
+                            </div>
+                        </td>                        
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td class="border border-gray-300 py-2 px-4 text-center" colspan="6">No hay libros para mostrar.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div> 
+    <div class="flex justify-between items-center mt-6">
+        <a href="{% url 'inicio' %}" class="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Volver a inicio</a>
+        <a href="{% url 'crear_libros' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md shadow-md transition duration-200">Crear libro</a>
+    </div>
+</div>
+{% endblock %}

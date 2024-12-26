@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIBLIOTECA VIRTUAL</title>
+    <script src="{% static 'tailwind.js' %}"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+    <link rel="icon" href="{% static 'images/icono.png' %}">
+</head>
+<body class="min-h-screen flex flex-col bg-orange-100">
+    <header class="bg-gradient-to-r from-orange-100 via-orange-500 to-orange-600 text-white py-6 shadow-md">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-5xl font-bold">BIBLIOTECA VIRTUAL</h1>
+            <p class="text-lg mt-2 text-gray-800">Explora grandes obras de la literatura desde cualquier lugar</p>
+        </div>
+    </header>
+    <hr class="my-8 border-t-2 border-gray-400 shadow-lg shadow-black">
+    {% block content %}
+    {% endblock %}
+    <footer class="text-center text-white py-4 bg-gray-400">
+        <p>&copy; 2024 Biblioteca Virtual. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>
